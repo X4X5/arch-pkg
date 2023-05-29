@@ -1,25 +1,27 @@
 #!/bin/bash
 
-# Define the package manager command
-command=$1
+# Define the package manager options
+echo "Which package manager would you like to use?"
+echo "1. pacman"
+echo "2. flatpak"
+echo "3. yay (AUR)"
 
-# Create a case statement to handle different package manager commands
-case $command in
-    install)
-        # Run the install command for the package manager
-        echo "Running install command for package manager"
-        ;;
-    update)
-        # Run the update command for the package manager
-        echo "Running update command for package manager"
-        ;;
-    remove)
-        # Run the remove command for the package manager
-        echo "Running remove command for package manager"
-        ;;
-    *)
-        # Handle invalid commands
-        echo "Invalid command. Please use install, update, or remove."
-        exit 1
-        ;;
+# Read user input
+read -p "Enter your choice: " choice
+
+# Create a case statement to handle different package managers
+case $choice in
+  1)
+    echo "Using pacman..."
+    # Run pacman commands here
+    ;;
+  2)
+    echo "Using flatpak..."
+    # Run flatpak commands here
+    ;;
+  3) echo "Using yay (AUR)"
+     # Run yay commands here
+  *)
+    echo "Invalid choice. Please enter a number between 1 and 3."
+    ;;
 esac
