@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+# Install flatpak if not installed
+if ! command -v flatpak > /dev/null; then
+    echo "flatpak is not installed, installing..."
+    sudo pacman -S flatpak -y
+fi
+
+# Install yay if not installed
+if ! command -v yay > /dev/null; then
+    echo "yay is not installed, installing..."
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    rm -rf yay
+fi
