@@ -1,27 +1,25 @@
 #!/bin/bash
 
-# Define the package manager options
-echo "Which package manager would you like to use?"
-echo "1. pacman"
-echo "2. flatpak"
-echo "3. yay (AUR)"
-
-# Read user input
-read -p "Enter your choice: " choice
-
-# Create a case statement to handle different package managers
-case $choice in
-  1)
-    echo "Using pacman..."
-    # Run pacman commands here
-    ;;
-  2)
-    echo "Using flatpak..."
-    # Run flatpak commands here
-    ;;
-  3) echo "Using yay (AUR)"
-     # Run yay commands here
-  *)
-    echo "Invalid choice. Please enter a number between 1 and 3."
-    ;;
-esac
+if [[ $1 == "install" ]]; then
+    pacman -S $2
+elif [[ $1 == "remove" ]]; then
+    pacman -R $2
+elif [[ $1 == "update" ]]; then
+    pacman -Syu
+elif [[ $1 == "search" ]]; then
+    pacman -Ss $2
+elif [[ $1 == "list" ]]; then
+    pacman -Q
+elif [[ $1 == "flatpak-install" ]]; then
+    flatpak install $2
+elif [[ $1 == "flatpak-remove" ]]; then
+    flatpak uninstall $2
+elif [[ $1 == "flatpak-update" ]]; then
+    flatpak update
+elif [[ $1 == "flatpak-search" ]]; then
+    flatpak search $2
+elif [[ $1 == "flatpak-list" ]]; then
+    flatpak list
+else
+    echo "Invalid command"
+fi
