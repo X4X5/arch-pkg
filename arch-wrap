@@ -1,14 +1,25 @@
 #!/bin/bash
 
-if [ "$1" = "install" ]; then
-    pacman -S "$2"
-    yay -S "$2"
-elif [ "$1" = "remove" ]; then
-    pacman -R "$2"
-    yay -R "$2"
-if [ "$1" = "update" ]; then
-    pacman -U "$2"
-    yay -U "$2"
+if [[ $1 == "install" ]]; then
+    pacman -S $2
+elif [[ $1 == "remove" ]]; then
+    pacman -R $2
+elif [[ $1 == "update" ]]; then
+    pacman -Syu
+elif [[ $1 == "search" ]]; then
+    pacman -Ss $2
+elif [[ $1 == "list" ]]; then
+    pacman -Q
+elif [[ $1 == "flatpak-install" ]]; then
+    flatpak install $2
+elif [[ $1 == "flatpak-remove" ]]; then
+    flatpak uninstall $2
+elif [[ $1 == "flatpak-update" ]]; then
+    flatpak update
+elif [[ $1 == "flatpak-search" ]]; then
+    flatpak search $2
+elif [[ $1 == "flatpak-list" ]]; then
+    flatpak list
 else
-    echo "Usage: $0 [install|remove|update] package"
+    echo "Invalid command"
 fi
