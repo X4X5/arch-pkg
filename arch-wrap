@@ -20,6 +20,16 @@ elif [[ $1 == "flatpak-search" ]]; then
     flatpak search $2
 elif [[ $1 == "flatpak-list" ]]; then
     flatpak list
+elif [[ $1 == "yay-install" ]]; then
+    yay -S $2
+elif [[ $1 == "yay-remove" ]]; then
+    yay -R $2
+elif [[ $1 == "yay-update" ]]; then
+    yay -Syu
+elif [[ $1 == "yay-search" ]]; then
+    yay -Ss $2
+elif [[ $1 == "yay-list" ]]; then
+    yay -Q
 else
     echo "Invalid command"
 fi
