@@ -5,7 +5,7 @@ function usage() {
     exit 1
 }
 
-if [[ $# -ne 3 ]]; then
+if [[ $# -lt 2 ]]; then
     usage
 fi
 
@@ -26,7 +26,11 @@ case $manager in
                 sudo pacman -Syu
                 ;;
             search)
-                sudo pacman -Q $package
+                if [[ -n $package ]]; then
+                    sudo pacman -Q $package
+                else
+                    sudo pacman -Q
+                fi
                 ;;
             list)
                 sudo pacman -Qe
@@ -48,11 +52,15 @@ case $manager in
                 flatpak update $package
                 ;;
             search)
-               flatpak search $package
-               ;;
+                if [[ -n $package ]]; then
+                    flatpak search $package
+                else
+                    flatpak search
+                fi
+                ;;
             list)
-               flatpak list
-               ;;
+                flatpak list
+                ;;
             *)
                 usage
                 ;;
@@ -70,7 +78,11 @@ case $manager in
                 yay -Syu
                 ;;
             search)
-                yay -Q $package
+                if [[ -n $package ]]; then
+                    yay -Q $package
+                else
+                    yay -Q
+                fi
                 ;;
             list)
                 yay -Qe
