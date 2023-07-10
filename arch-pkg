@@ -2,6 +2,7 @@
 
 function usage() {
     echo "Usage: arch-pkg [install|remove|update|search|list] [package manager] [package name]"
+    echo "In the case you're looking to use the 'list' command, [package name] is not needed"
     exit 1
 }
 
